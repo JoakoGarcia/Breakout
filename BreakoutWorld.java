@@ -46,6 +46,7 @@ public class BreakoutWorld extends World
   
    /** the number of balls created in the game so far */
    private int numBalls = 0;
+   private Counter contVidas;
   
    /** a message displayed for the user */
    private Message message = null;
@@ -56,8 +57,11 @@ public class BreakoutWorld extends World
     * No argument constructor 
     */
    public BreakoutWorld()
-   {
+   {    
         super (WIDTH, HEIGHT, RESOLUTION,false);
+        contVidas = new Counter("Vidas: ");
+        addObject(contVidas,300,15);
+        contVidas.setValue(3);
         setUpBreakout();
    }
   
@@ -126,6 +130,17 @@ public class BreakoutWorld extends World
         /* create a new ball */
         newBall();
   
+    }
+    public void DecrementarVida()
+    {
+        contVidas.add(-1);
+        if(contVidas.getValue()==0){
+            Label etiquetaFin = new Label("Game Over",55);
+            addObject(etiquetaFin,200,200);
+            Greenfoot.stop();
+        }
+    
+    
     }
   
     /*

@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 import java.awt.Color;
 import java.util.List;
+import  java.util.ListIterator; 
 
 /**
  * A ball is an object that can hit other objects and bounce off the 
@@ -71,33 +72,44 @@ public class Ball extends Actor
      */
     public void act() 
     {
-           move(2);
-           if(getY()>=500)
-           {
-               setRotation((Greenfoot.getRandomNumber(180))+180);
-           }
-           if(getY()<=0)
-           {
-               setRotation((Greenfoot.getRandomNumber(180)));
-           }
-           if(getX()>=404)
-           {
-               setRotation((Greenfoot.getRandomNumber(180))+90);
-           }
-           if(getX()<=0)
-           {
-               setRotation((Greenfoot.getRandomNumber(180))+270);
-           }
-           if(isTouching(Paddle.class))
-           {
-               setRotation((Greenfoot.getRandomNumber(180))+180);
-           }
-           if(isTouching(Brick.class))
-           {
-               setRotation((Greenfoot.getRandomNumber(180)));
-               removeTouching(Brick.class);
-           }
+        setLocation(getX()+velX,getY()+velY);
+        if(getX()<=0 || getX()>=404)
+        {
+            velX = -velX;
+        } 
+        if(getY()<=0)
+        {
+            velY = -velY;
+        } 
+        if(isTouching(Paddle.class))
+        {
+            velY = -velY;
+        }
+        if(isTouching(Brick.class))
+        {
+            velY = -velY;
+            removeTouching(Brick.class);
+        }
+        if(getY()>=500)
+        {
+            World mundo = getWorld();
+           ((BreakoutWorld)mundo).DecrementarVida();
+            setLocation(250,200);
+        }
+        checaBloques();
     }
+    
+    public void checaBloques()
+    {
+        
+            World mundo = getWorld();
+            List lista=mundo.getObjects(Brick.class);
+            if(lista.size()==0){
+             Label etiquetaFin = new Label("WINNER",55);
+             mundo.addObject(etiquetaFin,200,250);
+             Greenfoot.stop();
+            }
+        }
     
     /**
      * Method to set the ball color
