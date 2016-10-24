@@ -26,7 +26,7 @@ public class BreakoutWorld extends World
    /** the distance between bricks in pixels (cells) */
    public static final int BRICK_SEP = 4;   
    /** the number of bricks per row */
-   public static final int NUM_BRICKS_PER_ROW = 10; 
+   public static final int NUM_BRICKS_PER_ROW = 2; 
    /** distance from the top edge in pixels (cells) */
    public static final int BRICK_Y_OFFSET = 50;     
    /** the number of pixels per cell */
@@ -36,7 +36,7 @@ public class BreakoutWorld extends World
    /** world height in pixels (cells) */
    public static final int HEIGHT = 500;   
    /** number of rows of bricks */
-   public static final int NUM_ROWS = 10;  
+   public static final int NUM_ROWS = 2;  
    /** the colors to use for each row of bricks */
    public static final Color[] colorArray = {Color.RED, Color.RED,
       Color.ORANGE, Color.ORANGE, Color.GREEN,Color.GREEN,

@@ -73,7 +73,7 @@ public class Ball extends Actor
     public void act() 
     {
         setLocation(getX()+velX,getY()+velY);
-        if(getX()<=0 || getX()>=404)
+        if(getX()<=0 || getX()>=BreakoutWorld.WIDTH)
         {
             velX = -velX;
         } 
@@ -90,11 +90,11 @@ public class Ball extends Actor
             velY = -velY;
             removeTouching(Brick.class);
         }
-        if(getY()>=500)
+        if(getY()>=BreakoutWorld.HEIGHT)
         {
             World mundo = getWorld();
            ((BreakoutWorld)mundo).DecrementarVida();
-            setLocation(250,200);
+            setLocation(BreakoutWorld.WIDTH/2,BreakoutWorld.HEIGHT/2);
         }
         checaBloques();
     }
@@ -105,8 +105,8 @@ public class Ball extends Actor
             World mundo = getWorld();
             List lista=mundo.getObjects(Brick.class);
             if(lista.size()==0){
-             Label etiquetaFin = new Label("WINNER",55);
-             mundo.addObject(etiquetaFin,200,250);
+             Label etiquetaFin = new Label("WINNER",20);
+             mundo.addObject(etiquetaFin,BreakoutWorld.WIDTH/2,BreakoutWorld.HEIGHT/2);
              Greenfoot.stop();
             }
         }
