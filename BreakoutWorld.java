@@ -135,8 +135,8 @@ public class BreakoutWorld extends World
     {
         contVidas.add(-1);
         if(contVidas.getValue()==0){
-            Label etiquetaFin = new Label("Game Over",55);
-            addObject(etiquetaFin,200,200);
+            Label etiquetaFin = new Label("Game Over",20);
+            addObject(etiquetaFin,WIDTH/2,2);
             Greenfoot.stop();
         }
     
